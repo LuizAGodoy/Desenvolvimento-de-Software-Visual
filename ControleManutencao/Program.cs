@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
+
+
 namespace ControleManutencao
 {
 // Equipamento 
@@ -54,7 +56,22 @@ namespace ControleManutencao
 			var builder = WebApplication.CreateBuilder(args);
 			var connectionString = builder.Configuration.GetConnectionString("Manutencao") ?? "Data Source=Manutencao.db";
 			builder.Services.AddSqlite<BaseManutencao>(connectionString);
+
+            // swagger
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(
+                options =>
+                {
+                    options.SwaggerDoc("v1", new() { Title = "Trabalho", Version = "v1" });
+                }
+            );
+
+			//adiciona politica permissiva de cross-origin ao builder
+			builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 			var app = builder.Build();
+
+			app.UseCors();
+			
 
             //Cadastrar Plano
 			app.MapPost("/cadastrar/planos", (BaseManutencao baseManutencao, Plano plano) =>
@@ -170,7 +187,7 @@ namespace ControleManutencao
 			// referencia utilizada para usar Where
 			// https://stackoverflow.com/questions/71936335/asp-net-minimal-api-find-by-usernamestring
 
-		app.Run();
+			app.Run("http://localhost:3000");
 
 
         }
