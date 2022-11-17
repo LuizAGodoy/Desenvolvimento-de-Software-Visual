@@ -401,36 +401,40 @@ function cadastrarOrdem() {
 
 function listarOrdem() {
 
-
+	let idOrdem = document.getElementById('idOrdem').value
 
 	//da um GET no endpoint "usuarios"
-	fetch(url + 'ordem/equipamento/' + 
-	parseInt(document.getElementById('idequipamento2')).value)
-	
+	fetch(url + 'ordem/equipamento/' + idOrdem)
+
 		.then(response => response.json())
 		.then((ordens) => {
-			//pega div que vai conter a lista de usuarios
-			let listaUsuarios = document.getElementById('lista-ordem')
+			let listaOrdem = document.getElementById('lista-ordem')
 
-			//limpa div
-			while (listaUsuarios.firstChild) {
-			listaUsuarios.removeChild(listaUsuarios.firstChild)
+			while (listaOrdem.firstChild) {
+				listaOrdem.removeChild(listaOrdem.firstChild)
 			}
-
-			console.log(listaUsuarios)
 
 			for (let ordem of ordens) {
 				let divOrdem = document.createElement('div')
-				divOrdem.setAttribute('class', 'form')
+				divOrdem.style.margin = '5px'
+				divOrdem.style.padding = '5px'
+				divOrdem.style.backgroundColor = '#f0f0f0'
 
-				let divDesc = document.createElement('input')
-				divDesc.placeholder = 'Numero'
-				divDesc.value = ordem.descricao
-				divDesc.appendChild(divOrdem)
-				console.log(divDesc)
+
+				let divDescricao = document.createElement('div')
+				divDescricao.innerHTML = 'Descricao: ' + ordem.descricao
+				divOrdem.appendChild(divDescricao)
+
+				let divEquipamento = document.createElement('div')
+				divEquipamento.innerHTML = 'Equipamento: ' + ordem.idequipamento
+				divOrdem.appendChild(divEquipamento)
+
+				let divPlano = document.createElement('div')
+				divPlano.innerHTML = 'Plano: ' + ordem.idplano
+				divOrdem.appendChild(divPlano)
+
+				listaOrdem.appendChild(divOrdem)
 			}
-
-			listarOrdem.appendChild(divDesc)
 		})
-	}
+}
 
