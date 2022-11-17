@@ -1,10 +1,6 @@
 var url = 'http://localhost:3000/';
 
 function cadastrarPlano() {
-    if (!validaDescricao('descricao')) {
-        return
-    }
-
     let body =
     {
         'Descricao': document.getElementById('descricao').value,
