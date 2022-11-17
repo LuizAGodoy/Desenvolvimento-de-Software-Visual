@@ -1435,11 +1435,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/luizgodoy/Desktop/dev_zero/ControleManutencao/ControleManutencao.csproj",
+      "projectUniqueName": "/Users/luizgodoy/Downloads/Desenvolvimento-de-Software-Visual-main/ControleManutencao/ControleManutencao.csproj",
       "projectName": "ControleManutencao",
-      "projectPath": "/Users/luizgodoy/Desktop/dev_zero/ControleManutencao/ControleManutencao.csproj",
+      "projectPath": "/Users/luizgodoy/Downloads/Desenvolvimento-de-Software-Visual-main/ControleManutencao/ControleManutencao.csproj",
       "packagesPath": "/Users/luizgodoy/.nuget/packages/",
-      "outputPath": "/Users/luizgodoy/Desktop/dev_zero/ControleManutencao/obj/",
+      "outputPath": "/Users/luizgodoy/Downloads/Desenvolvimento-de-Software-Visual-main/ControleManutencao/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/luizgodoy/.nuget/NuGet/NuGet.Config"

@@ -124,25 +124,43 @@ namespace ControleManutencao
 				return "Equipamento Cadastrado";
 			});
             //Alterar Equipamento VERIFICAR POIS TEM O MESMO EXTENSAO
-            app.MapPost("/atualizar/{id}", (BaseManutencao baseManutencao, Equipamento equipamentoAtualizado, int id) =>
+            app.MapPut("/atualizar/{id}", (BaseManutencao baseManutencao, Equipamento equipamentoAtualizado, int id) =>
 			{
 				var equipamento = baseManutencao.Equipamentos.Find(id);
 				equipamento.numero = equipamentoAtualizado.numero;
 				baseManutencao.SaveChanges();
 				return "Equipamento atualizado";
 			});
+
+			
+
             //Deletar Equipamento
-            app.MapPost("/deletar/{id}", (BaseManutencao baseManutencao, int id) =>
+            app.MapDelete("/deletar/{id}", (BaseManutencao baseManutencao, int id) =>
 			{
+				//var equipamento = baseManutencao.Equipamentos.Find(id);
+				//baseManutencao.Remove(equipamento);
+				//baseManutencao.SaveChanges();
+				//return "Equipamento Deletado";
+
+
 				var equipamento = baseManutencao.Equipamentos.Find(id);
+				if(equipamento == null)
+				{
+					return Results.NotFound();
+				}
 				baseManutencao.Remove(equipamento);
 				baseManutencao.SaveChanges();
-				return "Equipamento Deletado";
+				return Results.Ok();
+
 			});
 
             //listar equipamentos
 			app.MapGet("/equipamentos", (BaseManutencao baseManutencao) => {
 				return baseManutencao.Equipamentos.ToList();
+
+
+
+				
 			});
 
 			// Cadastrar Ordem

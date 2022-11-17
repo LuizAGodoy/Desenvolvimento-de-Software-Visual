@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C5wcaqKxopdEJOoQ8HY1k4JNHTww2Msz0e6RujkfI5xo5ko8NKaCs99SSJXUtOFkw2SekhtThrvy5iVO7zX7Bw==",
+  "dgSpecHash": "3g5bBU6FtkWvQKRcrjrduzn+q1MQCcapnziCBE/g+w36T3FIwEd26AzByZuKUMkBsPWPpNbQMzPXwkwKxJHGcw==",
   "success": true,
-  "projectFilePath": "/Users/luizgodoy/Desktop/dev_zero/ControleManutencao/ControleManutencao.csproj",
+  "projectFilePath": "/Users/luizgodoy/Downloads/Desenvolvimento-de-Software-Visual-main/ControleManutencao/ControleManutencao.csproj",
   "expectedPackageFiles": [
     "/Users/luizgodoy/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/luizgodoy/.nuget/packages/microsoft.data.sqlite.core/6.0.0/microsoft.data.sqlite.core.6.0.0.nupkg.sha512",
