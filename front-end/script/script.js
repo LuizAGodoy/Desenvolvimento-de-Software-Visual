@@ -355,10 +355,10 @@ function cadastrarOrdem() {
 
 	let body =
 	{
-		//'Numero': document.getElementById('numero').value,
-		'idequipamento': document.getElementById('idequipamento2').value,
-		'idplano': document.getElementById('idplano2').value,
-		'descricao': document.getElementById('descricao2').value,
+		'idplano': document.getElementById('idplano').value,
+		'idequipamento': document.getElementById('idequipamento').value,
+
+		'descricao': document.getElementById('ordemdescricao').value,
 	};
 
 	//envio da requisicao usando a FETCH API
@@ -388,13 +388,21 @@ function cadastrarOrdem() {
 		})
 		//trata resposta
 		.then((output) => {
+			if (output == "Equipamento Invalido!") {
+				alert('Equipamento Invalido!')
+			}
+			if (output == "Plano Invalido!") {
+				alert('Plano Invalido!')
+			}
+			if (output == "Ordem Criada!") {
+				alert('Ordem de Serviço criada!')
+			}
 			console.log(output)
-			alert('Ordem Criada!')
 		})
 		//trata erro
 		.catch((error) => {
 			console.log(error)
-			alert('Não foi possível criar a ordem!')
+			// alert('Não foi possível criar a ordem!')
 		})
 }
 
