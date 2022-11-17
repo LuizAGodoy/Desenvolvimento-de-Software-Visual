@@ -1,16 +1,11 @@
 var url = 'http://localhost:3000/';
 
 function cadastrarEquipamento() {
-    //construcao do json que vai no body da criacao de usuario	
-
     let body =
     {
         'Numero': document.getElementById('numero').value,
     };
 
-    //envio da requisicao usando a FETCH API
-
-    //configuracao e realizacao do POST no endpoint "usuarios"
     fetch(url + "cadastrar/equipamento",
         {
             'method': 'POST',
@@ -22,7 +17,6 @@ function cadastrarEquipamento() {
             },
             'body': JSON.stringify(body)
         })
-        //checa se requisicao deu certo
         .then((response) => {
             if (response.ok) {
                 return response.text()
@@ -33,12 +27,10 @@ function cadastrarEquipamento() {
                 })
             }
         })
-        //trata resposta
         .then((output) => {
             console.log(output)
             alert('Cadastro efetuado! :D')
         })
-        //trata erro
         .catch((error) => {
             console.log(error)
             alert('Não foi possível efetuar o cadastro! :(')

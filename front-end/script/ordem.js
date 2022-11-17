@@ -1,8 +1,6 @@
 var url = 'http://localhost:3000/';
 
 function cadastrarOrdem() {
-    //construcao do json que vai no body da criacao de usuario	
-
     let body =
     {
         'idplano': document.getElementById('idplano').value,
@@ -11,9 +9,6 @@ function cadastrarOrdem() {
         'descricao': document.getElementById('ordemdescricao').value,
     };
 
-    //envio da requisicao usando a FETCH API
-
-    //configuracao e realizacao do POST no endpoint "usuarios"
     fetch(url + "criar/ordem",
         {
             'method': 'POST',
@@ -25,7 +20,6 @@ function cadastrarOrdem() {
             },
             'body': JSON.stringify(body)
         })
-        //checa se requisicao deu certo
         .then((response) => {
             if (response.ok) {
                 return response.text()
@@ -36,7 +30,6 @@ function cadastrarOrdem() {
                 })
             }
         })
-        //trata resposta
         .then((output) => {
             if (output == "Equipamento Invalido!") {
                 alert('Equipamento Invalido!')
@@ -49,13 +42,11 @@ function cadastrarOrdem() {
             }
             console.log(output)
         })
-        //trata erro
         .catch((error) => {
             console.log(error)
             alert('Não foi possível criar a ordem!')
         })
 
-    // zerar campos
     document.getElementById('idplano').value = ''
     document.getElementById('idequipamento').value = ''
     document.getElementById('ordemdescricao').value = ''
@@ -66,7 +57,6 @@ function listarOrdem() {
 
     let idOrdem = document.getElementById('idOrdem').value
 
-    //da um GET no endpoint "usuarios"
     fetch(url + 'ordem/equipamento/' + idOrdem)
 
         .then(response => response.json())
