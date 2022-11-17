@@ -11,8 +11,8 @@
     <script src="script/script.js"></script>
 </head>
 
-<body>
-
+<body BACKGROUND="img/manut.jpg" >
+    
     <header class="py-3 mb-4 border-bottom">
         <div class="container d-flex flex-wrap justify-content-center">
             <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
@@ -24,16 +24,24 @@
         </div>
     </header>
 
-    <a href="lista.html">Lista</a>
+    <a href="lista.html">
+
+        <div class="form">
+            <button>Listar / Alterar</button>
+        </div>
+
+    </a>
+
+
 
     <div class="form">
-        <input id="descricao" placeholder="Descriçäo" type="text" onblur="validaDescricao()" />
-        <button onclick="cadastrarPlano()">Cadastrar</button>
+        <input id="descricao" placeholder="Cadastrar Plano (Descriçäo)" type="text" onblur="validaDescricao()" />
+        <button onclick="cadastrarPlano()">Cadastrar Plano</button>
     </div>
 
     <div class="form">
-        <input id="numero" placeholder="Numero" type="number" />
-        <button onclick="cadastrarEquipamento()">Cadastrar</button>
+        <input id="numero" placeholder="Cadastrar Equipamento (Numero)" type="number" />
+        <button onclick="cadastrarEquipamento()">Cadastrar Equipamento</button>
     </div>
 
 </body>

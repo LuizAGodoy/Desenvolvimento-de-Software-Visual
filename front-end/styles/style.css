@@ -2,6 +2,7 @@
     font-family: "Verdana", sans-serif;
 }
 
+
 .form {
     box-shadow: 0 0 1px 0;
     position: relative;
@@ -22,17 +23,17 @@ input {
 }
 
 .form button {
-    background: #ff4d4d;
+    background: #161414;
     color: #FFFFFF;
     cursor: pointer;
 }
 
 .form button:active {
-    background: #cc0066;
+    background: #2a2829;
 }
 
 .form input {
-    background: #e2e2e2e2;
+    background: #f1eaeae2;
     box-sizing: border-box;
     margin-bottom: 15px;
 }
