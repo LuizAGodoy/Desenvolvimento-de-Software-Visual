@@ -398,3 +398,39 @@ function cadastrarOrdem() {
 		})
 }
 
+
+function listarOrdem() {
+
+
+
+	//da um GET no endpoint "usuarios"
+	fetch(url + 'ordem/equipamento/' + 
+	parseInt(document.getElementById('idequipamento2')).value)
+	
+		.then(response => response.json())
+		.then((ordens) => {
+			//pega div que vai conter a lista de usuarios
+			let listaUsuarios = document.getElementById('lista-ordem')
+
+			//limpa div
+			while (listaUsuarios.firstChild) {
+			listaUsuarios.removeChild(listaUsuarios.firstChild)
+			}
+
+			console.log(listaUsuarios)
+
+			for (let ordem of ordens) {
+				let divOrdem = document.createElement('div')
+				divOrdem.setAttribute('class', 'form')
+
+				let divDesc = document.createElement('input')
+				divDesc.placeholder = 'Numero'
+				divDesc.value = ordem.descricao
+				divDesc.appendChild(divOrdem)
+				console.log(divDesc)
+			}
+
+			listarOrdem.appendChild(divDesc)
+		})
+	}
+
