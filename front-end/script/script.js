@@ -239,28 +239,28 @@ function listarEquip() {
 				divUsuario.setAttribute('class', 'form')
 
 				//pega o nome do usuario
-				let divNumber = document.createElement('input')
-				divNumber.placeholder = 'Descricao'
-				divNumber.value = usuario.numero
-				divUsuario.appendChild(divNumber)
+				let divDescricao2 = document.createElement('input')
+				divDescricao2.placeholder = 'Descricao2'
+				divDescricao2.value = usuario.numero
+				divUsuario.appendChild(divDescricao2)
 
 
 				// //cria o botao para remover o usuario
-				// let btnRemover = document.createElement('button')
-				// btnRemover.innerHTML = 'Remover'
-				// btnRemover.onclick = u => remover(usuario.id)
-				// btnRemover.style.marginRight = '5px'
+				let btnRemover = document.createElement('button')
+				btnRemover.innerHTML = 'Remover'
+				btnRemover.onclick = u => remover(usuario.id)
+				btnRemover.style.marginRight = '5px'
 
-				//cria o botao para atualizar o usuario
-				// let btnAtualizar = document.createElement('button')
-				// btnAtualizar.innerHTML = 'Atualizar'
-				// btnAtualizar.onclick = u => atualizar(usuario.id, )
-				// btnAtualizar.style.marginLeft = '5px'
+				// //cria o botao para atualizar o usuario
+				let btnAtualizar = document.createElement('button')
+				btnAtualizar.innerHTML = 'Atualizar'
+				btnAtualizar.onclick = u => atualizarEquipamento(usuario.id, divDescricao2)
+				btnAtualizar.style.marginLeft = '5px'
 
-				//cria a div com os dois botoes
+				// //cria a div com os dois botoes
 				let divBotoes = document.createElement('div')
 				divBotoes.style.display = 'flex'
-				// divBotoes.appendChild(btnRemover)
+				divBotoes.appendChild(btnRemover)
 				divBotoes.appendChild(btnAtualizar)
 				divUsuario.appendChild(divBotoes)
 
@@ -270,6 +270,78 @@ function listarEquip() {
 		})
 
 }
+
+function remover(id) {
+	fetch(url + 'deletar/' + id,
+		{
+			'method': 'DELETE',
+			'redirect': 'follow'
+		})
+		.then((response) => {
+			if (response.ok) {
+				return response.text()
+			}
+			else {
+				return response.text().then((text) => {
+					throw new Error(text)
+				})
+			}
+		})
+		.then((output) => {
+			listarEquip()
+			console.log(output)
+			alert('Plano removido! >=]')
+		})
+		.catch((error) => {
+			console.log(error)
+			alert('Não foi possível remover Equipamento:/')
+		})
+}
+
+
+function atualizarEquipamento(id, divDescricao2) {
+	let body =
+	{
+		'Descricao2': divDescricao2.value,
+	}
+
+	fetch(url + "atualizar/" + id,
+		{
+			'method': 'PUT',
+			'redirect': 'follow',
+			'headers':
+			{
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			'body': JSON.stringify(body)
+		})
+		.then((response) => {
+			if (response.ok) {
+				return response.text()
+			}
+			else {
+				return response.text().then((text) => {
+					throw new Error(text)
+				})
+			}
+		})
+		.then((output) => {
+			listarEquip()
+			console.log(output)
+			alert('Plano atualizado!')
+		})
+		.catch((error) => {
+			console.log(error)
+			alert('Não foi possível atualizar o plano!')
+		})
+}
+
+
+
+
+
+
 
 
 function validaDescricao(id) {
@@ -282,5 +354,54 @@ function validaDescricao(id) {
 		divNome.style.border = 'solid 1px red'
 		return false
 	}
+}
+
+
+function cadastrarOrdem() {
+	//construcao do json que vai no body da criacao de usuario	
+
+	let body =
+	{
+		//'Numero': document.getElementById('numero').value,
+		'idequipamento': document.getElementById('idequipamento2').value,
+		'idplano': document.getElementById('idplano2').value,
+		'descricao': document.getElementById('descricao2').value,
+	};
+
+	//envio da requisicao usando a FETCH API
+
+	//configuracao e realizacao do POST no endpoint "usuarios"
+	fetch(url + "criar/ordem",
+		{
+			'method': 'POST',
+			'redirect': 'follow',
+			'headers':
+			{
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			'body': JSON.stringify(body)
+		})
+		//checa se requisicao deu certo
+		.then((response) => {
+			if (response.ok) {
+				return response.text()
+			}
+			else {
+				return response.text().then((text) => {
+					throw new Error(text)
+				})
+			}
+		})
+		//trata resposta
+		.then((output) => {
+			console.log(output)
+			alert('Ordem Criada!')
+		})
+		//trata erro
+		.catch((error) => {
+			console.log(error)
+			alert('Não foi possível criar a ordem!')
+		})
 }
 
