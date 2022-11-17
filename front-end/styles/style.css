@@ -65,7 +65,7 @@ input {
 }
 
 .header a.active {
-    background-color: dodgerblue;
+    background-color: #161414;
     color: white;
 }
 

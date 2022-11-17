@@ -116,6 +116,9 @@ function listarPlanos() {
                 listaUsuarios.appendChild(divUsuario)
             }
         })
+
+
+
 }
 
 function removerPlano(id) {
