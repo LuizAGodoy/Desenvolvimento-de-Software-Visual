@@ -82,7 +82,7 @@ namespace ControleManutencao
 			});
 
             //Alterar plano
-            app.MapPost("/atualizar/plano/{id}", (BaseManutencao baseManutencao, Plano planoAtualizado, int id) =>
+            app.MapPut("/atualizar/plano/{id}", (BaseManutencao baseManutencao, Plano planoAtualizado, int id) =>
 			{
 				var plano = baseManutencao.Planos.Find(id);
 				plano.descricao= planoAtualizado.descricao;
@@ -91,13 +91,22 @@ namespace ControleManutencao
 			});
 
             //Deletar Plano
-            app.MapPost("/deletar/plano/{id}", (BaseManutencao baseManutencao, int id) =>
+            app.MapDelete("/deletar/plano/{id}", (BaseManutencao baseManutencao, int id) =>
 			{
-                //Plano.GetPlano(baseManutencao.Planos.id);
+                // //Plano.GetPlano(baseManutencao.Planos.id);
+				// var plano = baseManutencao.Planos.Find(id);
+				// baseManutencao.Remove(plano);
+				// baseManutencao.SaveChanges();
+				// return "Plano Deletado";
+
 				var plano = baseManutencao.Planos.Find(id);
+				if(plano == null)
+				{
+					return Results.NotFound();
+				}
 				baseManutencao.Remove(plano);
 				baseManutencao.SaveChanges();
-				return "Plano Deletado";
+				return Results.Ok();
 			});
 
             //listar Plano

@@ -84,7 +84,7 @@ function atualizarPlano(id, divDescricao) {
 			}
 		})
 		.then((output) => {
-			listar()
+			listarPlanos()
 			console.log(output)
 			alert('Usuário atualizado! \\o/')
 		})
@@ -175,7 +175,7 @@ function listarPlanos() {
 				// //cria o botao para atualizar o usuario
 				let btnAtualizar = document.createElement('button')
 				btnAtualizar.innerHTML = 'Atualizar'
-				btnAtualizar.onclick = u => atualizarPlano(usuario.id, divDescricao.value)
+				btnAtualizar.onclick = u => atualizarPlano(usuario.id, divDescricao)
 				btnAtualizar.style.marginLeft = '5px'
 
 				// //cria a div com os dois botoes
@@ -209,7 +209,7 @@ function remover(id) {
 			}
 		})
 		.then((output) => {
-			listar()
+			listarPlanos()
 			console.log(output)
 			alert('Usuário removido! >=]')
 		})
