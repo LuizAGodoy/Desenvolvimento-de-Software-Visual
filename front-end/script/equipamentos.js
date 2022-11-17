@@ -35,6 +35,8 @@ function cadastrarEquipamento() {
             console.log(error)
             alert('Não foi possível efetuar o cadastro! :(')
         })
+
+        document.getElementById('numero').value=''; // Limpa o campo
 }
 
 function listarEquip() {

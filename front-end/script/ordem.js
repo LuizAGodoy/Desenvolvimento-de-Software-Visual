@@ -93,4 +93,6 @@ function listarOrdem() {
                 alert('Nenhuma ordem encontrada!')
             }
         })
+
+        document.getElementById('idOrdem').value=''; // Limpa o campo
 }

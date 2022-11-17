@@ -38,6 +38,8 @@ function cadastrarPlano() {
             console.log(error)
             alert('Não foi possível efetuar o cadastro! :(')
         })
+
+        document.getElementById('descricao').value=''; // Limpa o campo
 }
 
 function atualizarPlano(id, divDescricao) {
