@@ -95,50 +95,7 @@ function atualizarPlano(id, divDescricao) {
 }
 
 
-function cadastrarEquipamento() {
-	//construcao do json que vai no body da criacao de usuario	
 
-	let body =
-	{
-		'Numero': document.getElementById('numero').value,
-	};
-
-	//envio da requisicao usando a FETCH API
-
-	//configuracao e realizacao do POST no endpoint "usuarios"
-	fetch(url + "cadastrar/equipamento",
-		{
-			'method': 'POST',
-			'redirect': 'follow',
-			'headers':
-			{
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			},
-			'body': JSON.stringify(body)
-		})
-		//checa se requisicao deu certo
-		.then((response) => {
-			if (response.ok) {
-				return response.text()
-			}
-			else {
-				return response.text().then((text) => {
-					throw new Error(text)
-				})
-			}
-		})
-		//trata resposta
-		.then((output) => {
-			console.log(output)
-			alert('Cadastro efetuado! :D')
-		})
-		//trata erro
-		.catch((error) => {
-			console.log(error)
-			alert('Não foi possível efetuar o cadastro! :(')
-		})
-}
 
 function listarPlanos() {
 	//da um GET no endpoint "usuarios"
@@ -219,59 +176,95 @@ function remover(id) {
 		})
 }
 
+function cadastrarEquipamento() {
+	//construcao do json que vai no body da criacao de usuario	
+
+	let body =
+	{
+		'Numero': document.getElementById('numero').value,
+	};
+
+	//envio da requisicao usando a FETCH API
+
+	//configuracao e realizacao do POST no endpoint "usuarios"
+	fetch(url + "cadastrar/equipamento",
+		{
+			'method': 'POST',
+			'redirect': 'follow',
+			'headers':
+			{
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			'body': JSON.stringify(body)
+		})
+		//checa se requisicao deu certo
+		.then((response) => {
+			if (response.ok) {
+				return response.text()
+			}
+			else {
+				return response.text().then((text) => {
+					throw new Error(text)
+				})
+			}
+		})
+		//trata resposta
+		.then((output) => {
+			console.log(output)
+			alert('Cadastro efetuado! :D')
+		})
+		//trata erro
+		.catch((error) => {
+			console.log(error)
+			alert('Não foi possível efetuar o cadastro! :(')
+		})
+}
+
 function listarEquip() {
-	//da um GET no endpoint "usuarios"
+
 	fetch(url + 'equipamentos')
 		.then(response => response.json())
-		.then((usuarios) => {
-			//pega div que vai conter a lista de usuarios
-			let listaUsuarios = document.getElementById('lista-equipamento')
+		.then((equipamentos) => {
+			let listaEquipamentos = document.getElementById('lista-equipamento')
 
-			//limpa div
-			while (listaUsuarios.firstChild) {
-				listaUsuarios.removeChild(listaUsuarios.firstChild)
+			while (listaEquipamentos.firstChild) {
+				listaEquipamentos.removeChild(listaEquipamentos.firstChild)
 			}
 
-			//preenche div com usuarios recebidos do GET
-			for (let usuario of usuarios) {
-				//cria div para as informacoes de um usuario
-				let divUsuario = document.createElement('div')
-				divUsuario.setAttribute('class', 'form')
+			for (let equipamento of equipamentos) {
+				let divEquipamento = document.createElement('div')
+				divEquipamento.setAttribute('class', 'form')
 
-				//pega o nome do usuario
-				let divDescricao2 = document.createElement('input')
-				divDescricao2.placeholder = 'Descricao2'
-				divDescricao2.value = usuario.numero
-				divUsuario.appendChild(divDescricao2)
+				let divNumero = document.createElement('input')
+				divNumero.placeholder = 'Numero'
+				divNumero.value = equipamento.numero
+				divEquipamento.appendChild(divNumero)
 
-
-				// //cria o botao para remover o usuario
 				let btnRemover = document.createElement('button')
 				btnRemover.innerHTML = 'Remover'
-				btnRemover.onclick = u => remover(usuario.id)
+				btnRemover.onclick = u => removerEquipamentos(equipamento.id)
 				btnRemover.style.marginRight = '5px'
 
-				// //cria o botao para atualizar o usuario
 				let btnAtualizar = document.createElement('button')
 				btnAtualizar.innerHTML = 'Atualizar'
-				btnAtualizar.onclick = u => atualizarEquipamento(usuario.id, divDescricao2)
+				btnAtualizar.onclick = u => atualizarEquipamento(equipamento.id, divNumero)
 				btnAtualizar.style.marginLeft = '5px'
 
-				// //cria a div com os dois botoes
 				let divBotoes = document.createElement('div')
 				divBotoes.style.display = 'flex'
 				divBotoes.appendChild(btnRemover)
 				divBotoes.appendChild(btnAtualizar)
-				divUsuario.appendChild(divBotoes)
+				divEquipamento.appendChild(divBotoes)
 
-				//insere a div do usuario na div com a lista de usuarios
-				listaUsuarios.appendChild(divUsuario)
+				listaEquipamentos.appendChild(divEquipamento)
 			}
+
 		})
 
 }
 
-function remover(id) {
+function removerEquipamentos(id) {
 	fetch(url + 'deletar/' + id,
 		{
 			'method': 'DELETE',
@@ -299,10 +292,10 @@ function remover(id) {
 }
 
 
-function atualizarEquipamento(id, divDescricao2) {
+function atualizarEquipamento(id, divNumero) {
 	let body =
 	{
-		'Descricao2': divDescricao2.value,
+		'Numero': divNumero.value,
 	}
 
 	fetch(url + "atualizar/" + id,
