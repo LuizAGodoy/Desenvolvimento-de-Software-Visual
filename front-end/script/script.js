@@ -402,8 +402,13 @@ function cadastrarOrdem() {
 		//trata erro
 		.catch((error) => {
 			console.log(error)
-			// alert('Não foi possível criar a ordem!')
+			alert('Não foi possível criar a ordem!')
 		})
+
+	// zerar campos
+	document.getElementById('idplano').value = ''
+	document.getElementById('idequipamento').value = ''
+	document.getElementById('ordemdescricao').value = ''
 }
 
 
