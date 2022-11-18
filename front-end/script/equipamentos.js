@@ -59,6 +59,11 @@ function listarEquip() {
                 divNumero.value = equipamento.numero
                 divEquipamento.appendChild(divNumero)
 
+                let divId = document.createElement('input')
+                divId.placeholder = 'Id'
+                divId.value = (equipamento.id + " (O ID não é alteravel)")
+                divEquipamento.appendChild(divId)
+
                 let btnRemover = document.createElement('button')
                 btnRemover.innerHTML = 'Remover'
                 btnRemover.onclick = u => removerEquipamentos(equipamento.id)

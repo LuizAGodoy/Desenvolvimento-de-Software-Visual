@@ -99,6 +99,11 @@ function listarPlanos() {
                 divDescricao.value = usuario.descricao
                 divUsuario.appendChild(divDescricao)
 
+                let divId = document.createElement('input')
+                divId.placeholder = 'Id'
+                divId.value = (usuario.id + " (O ID não é alteravel)")
+                divUsuario.appendChild(divId)
+
                 let btnRemover = document.createElement('button')
                 btnRemover.innerHTML = 'Remover'
                 btnRemover.onclick = u => removerPlano(usuario.id)
